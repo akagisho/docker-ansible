@@ -1,0 +1,13 @@
+---
+- name: check os version
+  fail: msg='OS is NOT Ubuntu 18.x'
+  when: ansible_distribution != 'Ubuntu' or ansible_distribution_major_version != '18'
+
+- name: install packages
+  apt:
+    name:
+      - python3-pip
+
+- name: set timezone
+  timezone:
+    name: "{{ ubuntu18.timezone }}"
